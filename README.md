@@ -35,24 +35,18 @@ tamad005@ln0004 [~] %
 **Do NOT drectly run on turminal** but creat job script and submit it.  You can see more detail about the submission script from [here](https://www.msi.umn.edu/content/job-submission-and-scheduling-slurm). Here, just a simple example is shown:
 ```
 #!/bin/bash
-#SBATCH -time 20:00:00
-#SBATCH --ntasks=5
-#SBATCH --mem=2gb
+##  #SBATCH ** set
+#SBATCH -time 20:00:00  # set maximum calculation time
+#SBATCH --ntasks=5      # set number of cores (processers)
+#SBATCH --mem=2gb       # set limit of memorry (ram) usage
 
-module load intel
-module load ompi
+module load intel       # load intel compiler module
+module load ompi        # load openMPI module
 
-icpc -O3 -o run.out src/*cpp -std=c++11
-mpirun -n 5 ./run.out
+icpc -O3 -o run.out src/*cpp -std=c++11   # compile src/*cpp and create run.out file
+mpirun -n 5 ./run.out                     # run ./run.out with 5 cores (parallel)
 ```
-First few lines starting from `#SBATCH` set resource which you use in this job.
-* `--time` set maximum calculation time
-* `--ntasks` set number of cores (processers)
-* `--mem` set maximum limit of memorry (ram) usage
-
-Second block `module load *` load a module you use in this job.  For example `module load lammps` is needed to call when you run MD simulation on LAMMPS.
-
-Third block is main commands (what you do in this job).  In this example, `icpc -O3 -o run.out src/*cpp -std=c++11` compiles the source code and `mpirun -n 5 ./run.out` runs the compiled code with 5 cores.
+First few lines starting from `#SBATCH` set resource which you use in this job.  Second block `module load *` load a module you use in this job.  Third block is main commands (what you do in this job).  
 ### Job submission & related commands
 #### - Submit job script.  
 ```
@@ -72,7 +66,7 @@ You can check the your storage usage by:
 ```
 groupquota -u
 ```
-The option -u mean your usage.  When you remove -u option, total group strage usage is displayed.  This is example of the output.  He use 391.79 GB storage (11.3% of hogancj group storage):
+The option -u mean your usage.  When you remove -u option, total group strage usage is displayed.  Below is example where he use 391.79 GB storage (11.3% of hogancj group storage):
 ```
 Quota for user 'tamad005' in group 'hogancj'
 ------------------------
@@ -107,7 +101,7 @@ scp username@mesabi.msi.umn.edu:address1 address2
 ## <span style="color:blue">LAMMPS (MD simulaiton)</span>
 ### 1. Load module
 ```
-lmp_intel_cpu_intelmpi -in inputFileName
+module load lammps
 ```
 ### 2-1. Run with MSI execute file
 Serial run:
@@ -119,36 +113,52 @@ Parallel run (substitute nCPU with your number of CPUs):
 mpirun -n nCPU lmp_intel_cpu_intelmpi -in inputFileName
 ```
 ### 2-2. Build source code & run
+Transfer src, load lammps module, and build it.
 ---
 <br>
 <br>
 
 ## <span style="color:blue">OpenFOAM (CFD simulation)</span>
-You can find instruction from [here](https://www.msi.umn.edu/sw/openfoam) but it is not useful and many simulation did not run with this way since the version is old (compatibility with recent version is low). We reccomend to build your own source code on the MSI computer as following instruction.
+You can find instruction from [here](https://www.msi.umn.edu/sw/openfoam) but it is not useful and some calculation could not run with this way due to the old version of OpenFOAM. We reccomend to build your own source code on the MSI computer and use it as following instruction.
 ### Build source code
 #### Step 1: Download OpenFOAM
-* You can obtain openfoam-OpenFOAM-v2012.tar.gz from [Hogan Lab google drive](https://drive.google.com/drive/folders/1aNexaUZE-kseBgT_6dSQ2XPvSLhlY9ph?usp=sharing) or you can download from [here](https://develop.openfoam.com/Development/openfoam/-/tree/OpenFOAM-v2012).
-* <span style="color:red">**Newer version (OpenFOAM-v2206) could not be compiled**</span> due to maybe MSI compiler issue (check date: 08/19/2022).  I did not test the versions between v2206 and v2012.  OpenFOAM foundation version may be avairable as well (not checked).
+* You can obtain openfoam-OpenFOAM-v2012.tar.gz from [Hogan Lab google drive](https://drive.google.com/drive/folders/1aNexaUZE-kseBgT_6dSQ2XPvSLhlY9ph?usp=sharing) or from this [link](https://develop.openfoam.com/Development/openfoam/-/tree/OpenFOAM-v2012).
+* <span style="color:red">**Newer version (OpenFOAM-v2206) could not be compiled**</span> due to maybe MSI compiler issue (check date: 08/19/2022).  The versions between v2012-v2206 and OpenFOAM foundation version may be avairable (not checked).
 #### Step 2: Transfer downloaded file to MSI
 * Creat a OpenFOAM directory at your MSI home directory: `mkdir ~/OpenFOAM`.
-* Transfer the downloaded file with compressed form.
-* Check you have ~/OpenFOAM/openfoam-OpenFOAM-v2012.tar.gz file.
-#### Step 3: Extract file on MSI
-* Transfer OpenFOAM_MSIscript/Extract.sh file to ~/OpenFOAM/.
+* Transfer the downloaded file to the created directory (*~/OpenFOAM/*) with compressed form (.tar.gz).
+* Check you have *~/OpenFOAM/openfoam-OpenFOAM-v2012.tar.gz* file.
+#### Step 3: Extract file
+* Transfer [OpenFOAM_MSIscript/Extract.sh](https://github.com/tamadate/MSI_PC_usage/blob/master/OpenFOAM_MSIscript/Extract.sh) file to *~/OpenFOAM/*.
 * Submit that script: `sbatch Extract.sh`
 * This script extract .tar file via `tar -xfv openfoam-OpenFOAM-v2012.tar.gz`.
-* Check you have ~/OpenFOAM/openfoam-OpenFOAM-v2012 file.
+* Check you have *~/OpenFOAM/openfoam-OpenFOAM-v2012* file.
 #### Step 4: Build
-* Transfer OpenFOAM_MSIscript/build.sh to ~/OpenFOAM/openfoam-OpenFOAM-v2012/.
+* Transfer [OpenFOAM_MSIscript/build.sh](https://github.com/tamadate/MSI_PC_usage/blob/master/OpenFOAM_MSIscript/build.sh) to *~/OpenFOAM/openfoam-OpenFOAM-v2012/*.
 * Submit script by `sbatch build.sh`
-* This script build OpenFOAM via:
+* This script build OpenFOAM (10 cores parallel) via:
 ```
 module load ompi
 module load flex
-source ~/OpenFOAM/openfoam-OpenFOAM-v2012/
-./Allwmake
+source ~/OpenFOAM/openfoam-OpenFOAM-v2012/etc/bashrc
+./Allwmake -j 10
 ```
-* It may take a while (>10hr).
+* It may take a while (>1hr).
+### Run simulation
+You need to load an ompi module and bashrc files in the submission script (you can do it on the terminal before the submission but it is better to do in the submission script for just in case).  This is an test case from cavity flow in tutorial:
+```
+#!/bin/bash
+#SBATCH -time 20:00:00
+#SBATCH --ntasks=1
+#SBATCH --mem=2gb
+
+module load ompi
+source ~/OpenFOAM/openfoam-OpenFOAM-v2012/etc/bashrc
+
+cp -r ~/OpenFOAM/openfoam-OpenFOAM-v2012/tutorial/incompressible/icoFoam/cavity/cavity ./
+blockMesh
+icoFoam
+```
 ---
 <br>
 <br>

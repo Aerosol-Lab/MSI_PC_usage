@@ -1,10 +1,9 @@
 #!/bin/bash
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=2gb
-#SBATCH -t 20:00:00
+#SBATCH --ntasks=10
+#SBATCH --mem=20gb
+#SBATCH --time 20:00:00
 
 module load ompi
 module load flex
-./Allwmake
+source ~/OpenFOAM/openfoam-OpenFOAM-v2012/etc/bashrc
+./Allwmake -j 10
