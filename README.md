@@ -1,26 +1,54 @@
 # Hogan Lab. Minnesota Supercomputer Institute (MSI) usage
-## ssh connection
-Connet MSI pc by typing following command:
+## <span style="color:blue">ssh connection</span>
+Open terminal (Linux) or command prompt and connet MSI pc by typing following command:
 ```
 ssh username@mesabi.msi.umn.edu
 ```
-## Job submission
+where, username is your UMN internet ID.  The system require 2-factor authentification (your UMN password and DUO).  After the authentification, your can see this login screen:
+```
+Success. Logging you in...
+Last failed login: Tue Sep 20 09:14:30 CDT 2022 from me-u-me-pcl-18.me.umn.edu on ssh:notty
+There were 2 failed login attempts since the last successful login.
+Last login: Thu Sep 15 08:43:38 2022 from 10.100.0.179
+-------------------------------------------------------------------------------
+             University of Minnesota Supercomputing Institute
+                                 Mesabi
+                         HP Haswell Linux Cluster
+-------------------------------------------------------------------------------
+For assistance please contact us at https://www.msi.umn.edu/support/help.html
+help@msi.umn.edu, or (612)626-0802.
+-------------------------------------------------------------------------------
+Home directories are snapshot protected. If you accidentally delete a file in
+your home directory, type "cd .snapshot" then "ls -lt" to list the snapshots
+available in order from most recent to oldest.
+
+January 6, 2021: Slurm is now the scheduler for all nodes.
+-------------------------------------------------------------------------------
+tamad005@ln0004 [~] %
+```
+## <span style="color:blue">Job submission</span>
 ### Submission script
 **Do NOT drectly run on turminal** but creat job script and submit it.  You can see detail about the submission script from [here](https://www.msi.umn.edu/content/job-submission-and-scheduling-slurm). A simple example is also shown here:
 ```
 #!/bin/bash
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=5
-#SBATCH --cpus-per-task=1
+#SBATCH -time 20:00:00
+#SBATCH --ntasks=5
 #SBATCH --mem=2gb
-#SBATCH -t 20:00:00
 
 module load intel
+module load ompi
 
 icpc -O3 -o run.out src/*cpp -std=c++11
 mpirun -n 5 ./run.out
-
 ```
+First few lines starting from `#SBATCH` set resource which you use in this job.
+* `--time` set maximum calculation time
+* `--ntasks` set number of cores (processers)
+* `--mem` set maximum limit of memorry (ram) usage
+
+Second block `module load *` load a module you use in this job.  For example `module load lammps` is needed to call when you run MD simulation on LAMMPS.
+
+Third block is main commands (what you do in this job).  In this example, `icpc -O3 -o run.out src/*cpp -std=c++11` compiles the source code and `mpirun -n 5 ./run.out` runs the compiled code with 5 cores.
 ### Job submission & related commands
 #### - Submit job script.  
 ```
@@ -55,7 +83,7 @@ Quota        | 5,000,000
 Percent used | 4.7 %    
 ```
 
-## File transfer
+## <span style="color:blue">File transfer</span>
 ### 1. WinSCP (Windows)
 You can find instruction from [here](https://www.msi.umn.edu/support/faq/how-do-i-use-winscp-transfer-data).
 ### 2. FileZilla (Linux)
@@ -65,7 +93,7 @@ Type command `scp` like `cp` in UNIX command:<br>
 ```
 scp username@mesabi.msi.umn.edu:address1 address2
 ```
-## LAMMPS (MD simulaiton)
+## <span style="color:blue">LAMMPS (MD simulaiton)</span>
 ### 1. Load module
 ```
 lmp_intel_cpu_intelmpi -in inputFileName
@@ -81,7 +109,7 @@ mpirun -n nCPU lmp_intel_cpu_intelmpi -in inputFileName
 ```
 ### 2-2. Build source code & run
 ---
-## OpenFOAM (CFD simulation)
+## <span style="color:blue">OpenFOAM (CFD simulation)</span>
 You can find instruction from [here](https://www.msi.umn.edu/sw/openfoam) but it is not useful and many simulation did not run with this way since the version is old (compatibility with recent version is low). We reccomend to build your own source code on the MSI computer as following instruction.
 ### Build source code
 #### Step 1: Download OpenFOAM
@@ -107,7 +135,7 @@ source ~/OpenFOAM/openfoam-OpenFOAM-v2012/
 ./Allwmake
 ```
 * It may take a while (>10hr).
-## Your own code
+## <span style="color:blue">Your own code</span>
 Only you know how to use it.
 ## Author
 * Dr. Tomoya Tamadate
