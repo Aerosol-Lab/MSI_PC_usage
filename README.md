@@ -100,6 +100,7 @@ Type command `scp` like `cp` in UNIX command:<br>
 ```
 scp username@mesabi.msi.umn.edu:address1 address2
 ```
+---
 <br>
 <br>
 
