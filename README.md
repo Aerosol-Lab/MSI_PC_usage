@@ -1,5 +1,4 @@
 # Hogan Lab. Minnesota Supercomputer Institute (MSI) usage
----
 ## <span style="color:blue">ssh connection</span>
 Open terminal (Linux) or command prompt and connet MSI pc by typing following command:
 ```
@@ -28,9 +27,12 @@ January 6, 2021: Slurm is now the scheduler for all nodes.
 tamad005@ln0004 [~] %
 ```
 ---
+<br>
+<br>
+
 ## <span style="color:blue">Job submission</span>
 ### Submission script
-**Do NOT drectly run on turminal** but creat job script and submit it.  You can see detail about the submission script from [here](https://www.msi.umn.edu/content/job-submission-and-scheduling-slurm). A simple example is also shown here:
+**Do NOT drectly run on turminal** but creat job script and submit it.  You can see more detail about the submission script from [here](https://www.msi.umn.edu/content/job-submission-and-scheduling-slurm). Here, just a simple example is shown:
 ```
 #!/bin/bash
 #SBATCH -time 20:00:00
@@ -84,6 +86,9 @@ Usage        | 233,589
 Quota        | 5,000,000
 Percent used | 4.7 %    
 ```
+---
+<br>
+<br>
 
 ## <span style="color:blue">File transfer</span>
 ### 1. WinSCP (Windows)
@@ -95,6 +100,9 @@ Type command `scp` like `cp` in UNIX command:<br>
 ```
 scp username@mesabi.msi.umn.edu:address1 address2
 ```
+<br>
+<br>
+
 ## <span style="color:blue">LAMMPS (MD simulaiton)</span>
 ### 1. Load module
 ```
@@ -111,6 +119,9 @@ mpirun -n nCPU lmp_intel_cpu_intelmpi -in inputFileName
 ```
 ### 2-2. Build source code & run
 ---
+<br>
+<br>
+
 ## <span style="color:blue">OpenFOAM (CFD simulation)</span>
 You can find instruction from [here](https://www.msi.umn.edu/sw/openfoam) but it is not useful and many simulation did not run with this way since the version is old (compatibility with recent version is low). We reccomend to build your own source code on the MSI computer as following instruction.
 ### Build source code
@@ -137,8 +148,15 @@ source ~/OpenFOAM/openfoam-OpenFOAM-v2012/
 ./Allwmake
 ```
 * It may take a while (>10hr).
+---
+<br>
+<br>
+
 ## <span style="color:blue">Your own code</span>
 Only you know how to use it.
+<br>
+<br>
+
 ## Author
 * Dr. Tomoya Tamadate
 * [LinkedIn](https://www.linkedin.com/in/tomoya-tamadate-953673142/)/[ResearchGate](https://www.researchgate.net/profile/Tomoya-Tamadate)/[Google Scholar](https://scholar.google.com/citations?user=XXSOgXwAAAAJ&hl=ja)
