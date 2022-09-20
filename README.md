@@ -1,4 +1,5 @@
 # Hogan Lab. Minnesota Supercomputer Institute (MSI) usage
+---
 ## <span style="color:blue">ssh connection</span>
 Open terminal (Linux) or command prompt and connet MSI pc by typing following command:
 ```
@@ -26,7 +27,8 @@ January 6, 2021: Slurm is now the scheduler for all nodes.
 -------------------------------------------------------------------------------
 tamad005@ln0004 [~] %
 ```
-## <p><span style="color:blue">**Job submission**</span>
+---
+## <span style="color:blue">Job submission</span>
 ### Submission script
 **Do NOT drectly run on turminal** but creat job script and submit it.  You can see detail about the submission script from [here](https://www.msi.umn.edu/content/job-submission-and-scheduling-slurm). A simple example is also shown here:
 ```
