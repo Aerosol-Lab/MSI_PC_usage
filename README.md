@@ -26,7 +26,7 @@ January 6, 2021: Slurm is now the scheduler for all nodes.
 -------------------------------------------------------------------------------
 tamad005@ln0004 [~] %
 ```
-## <span style="color:blue">Job submission</span>
+## <p><span style="color:blue">Job submission</span>
 ### Submission script
 **Do NOT drectly run on turminal** but creat job script and submit it.  You can see detail about the submission script from [here](https://www.msi.umn.edu/content/job-submission-and-scheduling-slurm). A simple example is also shown here:
 ```
