@@ -26,7 +26,7 @@ You can check the your storage usage by:
 ```
 groupquota -u
 ```
-When you remove -u option, group strage usage is displayed.  This is example of the output:
+The option -u mean your usage.  When you remove -u option, total group strage usage is displayed.  This is example of the output.  He use 391.79 GB storage (11.3% of hogancj group storage):
 ```
 Quota for user 'tamad005' in group 'hogancj'
 ------------------------
@@ -42,11 +42,11 @@ Percent used | 4.7 %
 ```
 
 ## File transfer
-* **WinSCP** <br>
+### 1. WinSCP
 You can find instruction from [here](https://www.msi.umn.edu/support/faq/how-do-i-use-winscp-transfer-data).
-* **FileZilla** <br>
+### 2. FileZilla
 You can find instruction from [here](https://www.msi.umn.edu/support/faq/how-do-i-use-filezilla-transfer-data).
-* **SCP** <br>
+### 3. SCP
 Type command `scp` like `cp` in UNIX command:<br>
 ```
 scp username@mesabi.msi.umn.edu:address1 address2
@@ -78,7 +78,7 @@ You can find instruction from [here](https://www.msi.umn.edu/sw/openfoam) but it
 * Transfer the downloaded file with compressed form.
 * Check you have ~/OpenFOAM/openfoam-OpenFOAM-v2012.tar.gz file.
 #### Step 3: Extract file on MSI
-* Transfer OpenFOAM_MSIscript/Extract.sh file to ~/OpenFOAM/ (local->MSI).
+* Transfer OpenFOAM_MSIscript/Extract.sh file to ~/OpenFOAM/.
 * Submit that script: `sbatch Extract.sh`
 * This script extract .tar file via `tar -xfv openfoam-OpenFOAM-v2012.tar.gz`.
 * Check you have ~/OpenFOAM/openfoam-OpenFOAM-v2012 file.
