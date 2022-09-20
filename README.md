@@ -6,7 +6,21 @@ ssh username@mesabi.msi.umn.edu
 ```
 ## Job submission
 ### Submission script
-**Do NOT drectly run code on your turminal.**
+**Do NOT drectly run on turminal** but creat job script and submit it.  You can see detail about the submission script from [here](https://www.msi.umn.edu/content/job-submission-and-scheduling-slurm). A simple example is also shown here:
+```
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=5
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=2gb
+#SBATCH -t 20:00:00
+
+module load intel
+
+icpc -O3 -o run.out src/*cpp -std=c++11
+mpirun -n 5 ./run.out
+
+```
 ### Job submission & related commands
 #### - Submit job script.  
 ```
