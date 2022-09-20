@@ -42,9 +42,9 @@ Percent used | 4.7 %
 ```
 
 ## File transfer
-### 1. WinSCP
+### 1. WinSCP (Windows)
 You can find instruction from [here](https://www.msi.umn.edu/support/faq/how-do-i-use-winscp-transfer-data).
-### 2. FileZilla
+### 2. FileZilla (Linux)
 You can find instruction from [here](https://www.msi.umn.edu/support/faq/how-do-i-use-filezilla-transfer-data).
 ### 3. SCP
 Type command `scp` like `cp` in UNIX command:<br>
