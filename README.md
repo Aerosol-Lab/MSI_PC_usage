@@ -58,8 +58,33 @@ squeue --me
 ```
 You can see this kind of output:
 ```
-JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-150233376   agsmall wmake.sh tamad005  R      15:37      1 acn02
+tamad005@ln0006 [~/TiO2/0.6nm1.6nm_5] % squeue --me
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+         150273877   agsmall   run.sh tamad005  R   21:45:16      1 acn120
+         150273874   agsmall   run.sh tamad005  R   21:45:47      1 acn97
+         150273875   agsmall   run.sh tamad005  R   21:45:47      1 acn38
+         150273876   agsmall   run.sh tamad005  R   21:45:47      1 acn38
+         150272959   agsmall   run.sh tamad005  R   21:58:45      1 acn84
+         150272960   agsmall   run.sh tamad005  R   21:58:45      1 acn172
+         150272961   agsmall   run.sh tamad005  R   21:58:45      1 acn172
+         150272962   agsmall   run.sh tamad005  R   21:58:45      1 acn172
+         150272954   agsmall   run.sh tamad005  R   21:58:46      1 acn08
+         150272955   agsmall   run.sh tamad005  R   21:58:46      1 acn08
+         150272956   agsmall   run.sh tamad005  R   21:58:46      1 acn08
+         150272957   agsmall   run.sh tamad005  R   21:58:46      1 acn83
+         150272958   agsmall   run.sh tamad005  R   21:58:46      1 acn84
+         150272780   agsmall   run.sh tamad005  R   22:06:15      1 acn109
+         150272781   agsmall   run.sh tamad005  R   22:06:15      1 acn21
+         150272782   agsmall   run.sh tamad005  R   22:06:15      1 acn21
+         150272783   agsmall   run.sh tamad005  R   22:06:15      1 acn21
+         150272784   agsmall   run.sh tamad005  R   22:06:15      1 acn08
+         150272774   agsmall   run.sh tamad005  R   22:06:16      1 acn130
+         150272775   agsmall   run.sh tamad005  R   22:06:16      1 acn130
+         150272777   agsmall   run.sh tamad005  R   22:06:16      1 acn43
+         150272778   agsmall   run.sh tamad005  R   22:06:16      1 acn43
+         150272779   agsmall   run.sh tamad005  R   22:06:16      1 acn43
+         150272727   agsmall   run.sh tamad005  R   22:09:25      1 acn149
+         ...
 ```
 #### - Check storage usage
 You can check the your storage usage by:
