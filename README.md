@@ -1,7 +1,7 @@
 # Hogan Lab. Minnesota Supercomputer Institute (MSI) usage
 ## <span style="color:blue">ssh connection</span>
 Open terminal (Linux) or command prompt and connet MSI pc by typing following command:
-```
+```bash
 ssh username@mesabi.msi.umn.edu
 ```
 where, username is your UMN internet ID.  The system require 2-factor authentification (your UMN password and DUO).  After the authentification, your can see this login screen:
@@ -33,7 +33,7 @@ tamad005@ln0004 [~] %
 ## <span style="color:blue">Job submission</span>
 ### Submission script
 **Do NOT drectly run on turminal** but creat job script and submit it.  You can see more detail about the submission script from [here](https://www.msi.umn.edu/content/job-submission-and-scheduling-slurm). Here, just a simple example is shown:
-```
+```bash
 #!/bin/bash
 ##  #SBATCH ** set
 #SBATCH -time 20:00:00  # set maximum calculation time
@@ -49,11 +49,11 @@ mpirun -n 5 ./run.out                     # run ./run.out with 5 cores (parallel
 First few lines starting from `#SBATCH` set resource which you use in this job.  Second block `module load *` load a module you use in this job.  Third block is main commands (what you do in this job).  
 ### Job submission & related commands
 #### - Submit job script.  
-```
+```bash
 sbatch filename
 ```
 #### - Check simulation status
-```
+```bash
 squeue --me
 ```
 You can see this kind of output:
@@ -88,7 +88,7 @@ tamad005@ln0006 [~/TiO2/0.6nm1.6nm_5] % squeue --me
 ```
 #### - Check storage usage
 You can check the your storage usage by:
-```
+```bash
 groupquota -u
 ```
 The option -u mean your usage.  When you remove -u option, total group strage usage is displayed.  Below is example where he use 391.79 GB storage (11.3% of hogancj group storage):
@@ -116,7 +116,7 @@ You can find instruction from [here](https://www.msi.umn.edu/support/faq/how-do-
 You can find instruction from [here](https://www.msi.umn.edu/support/faq/how-do-i-use-filezilla-transfer-data).
 ### 3. SCP
 Type command `scp` like `cp` in UNIX command:<br>
-```
+```bash
 scp username@mesabi.msi.umn.edu:address1 address2
 ```
 ---
@@ -125,16 +125,16 @@ scp username@mesabi.msi.umn.edu:address1 address2
 
 ## <span style="color:blue">LAMMPS (MD simulaiton)</span>
 ### 1. Load module
-```
+```bash
 module load lammps
 ```
 ### 2-1. Run with MSI execute file
 Serial run:
-```
+```bash
 lmp_intel_cpu_intelmpi -in inputFileName
 ```
 Parallel run (substitute nCPU with your number of CPUs):
-```
+```bash
 mpirun -n nCPU lmp_intel_cpu_intelmpi -in inputFileName
 ```
 ### 2-2. Build source code & run
@@ -162,7 +162,7 @@ You can find instruction from [here](https://www.msi.umn.edu/sw/openfoam) but it
 * Transfer [OpenFOAM_MSIscript/build.sh](https://github.com/tamadate/MSI_PC_usage/blob/master/OpenFOAM_MSIscript/build.sh) to *~/OpenFOAM/openfoam-OpenFOAM-v2012/*.
 * Submit script by `sbatch build.sh`
 * This script build OpenFOAM (10 cores parallel) via:
-```
+```bash
 module load ompi
 module load flex
 source ~/OpenFOAM/openfoam-OpenFOAM-v2012/etc/bashrc
@@ -171,7 +171,7 @@ source ~/OpenFOAM/openfoam-OpenFOAM-v2012/etc/bashrc
 * It may take a while (>1hr).
 ### Run simulation
 You need to load an ompi module and bashrc files in the submission script (you can do it on the terminal before the submission but it is better to do in the submission script for just in case).  This is an test case from cavity flow in tutorial:
-```
+```bash
 #!/bin/bash
 #SBATCH -time 20:00:00
 #SBATCH --ntasks=1
