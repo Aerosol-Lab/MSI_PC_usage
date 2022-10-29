@@ -143,6 +143,37 @@ Transfer src, load lammps module, and build it.
 <br>
 <br>
 
+## <span style="color:blue">OVITO (python interface)</span>
+### 1. Make virtual Anaconda environment
+Maybe you need to create your own Anaconda environment (named env_ovito in this example) for ovito module installation:
+```
+module load conda
+conda create --name env_ovito --clone base
+```
+### 2. Switch the environment and install ovito module
+Switch from base to env_ovito and install ovito module as:
+```
+conda activate env_ovito
+conda install --strict-channel-priority -c https://conda.ovito.org -c conda-forge ovito
+```
+Since the installaiton process takes about 1 hr, this process should be performed through submission script like a code in OVITO_building/step2.sh
+### 3. Check the ovito module
+Test to import ovito module and print its version:
+```
+(base) tamad005@ln0005 [~/vaporUptake] % conda activate env_ovito
+(env_ovito) tamad005@ln0005 [~/vaporUptake] % python
+Python 3.10.6 | packaged by conda-forge | (main, Aug 22 2022, 20:35:26) [GCC 10.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ovito
+>>> ovito.version
+(3, 7, 10)
+>>>
+```
+If it is installed properly, it return ovito version (3.7.10 in this example).
+
+<br>
+<br>
+
 ## <span style="color:blue">OpenFOAM (CFD simulation)</span>
 You can find instruction from [here](https://www.msi.umn.edu/sw/openfoam) but it is not useful and some calculation could not run with this way due to the old version of OpenFOAM. We reccomend to build your own source code on the MSI computer and use it as following instruction.
 ### Build source code
