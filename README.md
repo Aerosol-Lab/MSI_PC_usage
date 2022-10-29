@@ -156,7 +156,7 @@ Switch from base to env_ovito and install ovito module as:
 conda activate env_ovito
 conda install --strict-channel-priority -c https://conda.ovito.org -c conda-forge ovito
 ```
-Since the installaiton process takes about 1 hr, this process should be performed through submission script like a code in OVITO_building/step2.sh
+Since the installaiton process takes about 1 hr, this process should be performed through submission script like a code [OVITO_building/step2.sh](https://github.com/tamadate/MSI_PC_usage/blob/master/OVITO_install/step2.sh).
 ### 3. Check the ovito module
 Test to import ovito module and print its version:
 ```
@@ -170,7 +170,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 If it is installed properly, it return ovito version (3.7.10 in this example).
-
+---
 <br>
 <br>
 
