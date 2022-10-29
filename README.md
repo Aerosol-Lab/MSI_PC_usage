@@ -139,6 +139,7 @@ mpirun -n nCPU lmp_intel_cpu_intelmpi -in inputFileName
 ```
 ### 2-2. Build source code & run
 Transfer src, load lammps module, and build it.
+
 ---
 <br>
 <br>
@@ -170,6 +171,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 If it is installed properly, it return ovito version (3.7.10 in this example).
+
 ---
 <br>
 <br>
