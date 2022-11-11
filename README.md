@@ -202,8 +202,29 @@ source ~/OpenFOAM/openfoam-OpenFOAM-v2012/etc/bashrc
 ./Allwmake -j 10
 ```
 * It may take a while (>1hr).
+#### Step 5: Edit bashrc (Option)
+* The OpenFOAM simulation is executable even if this step is skipped but this step makes the simulation command more simple, leading to reduce the chance of submission mistaking.
+* On your MSI terminal, add two lines `module load ompi` and `source ~/OpenFOAM/OpenFOAM-v2012/etc/bashrc` to `~/.bashrc file`:
+```
+echo module load ompi >> ~/.bashrc
+echo source ~/OpenFOAM/OpenFOAM-v2012/etc/bashrc >> ~/.bashrc
+```
+* Check if the path is correct by typing `which simpleFoam`. You can see the return `~/OpenFOAM/OpenFOAM-v2012/platforms/linux64GccDPInt32Opt/bin/simpleFoam` when it is correct.
 ### Run simulation
-You need to load an ompi module and bashrc files in the submission script (you can do it on the terminal before the submission but it is better to do in the submission script for just in case).  This is an test case from cavity flow in tutorial:
+#### If you did the Step 5
+All solvers are able to use via the same command, e.g., `icoFoam`, `simpleFoam`, `rhoSimpleFoam`, etc... as your local PC.  This is an test case from cavity flow in tutorial:
+```bash
+#!/bin/bash
+#SBATCH -time 20:00:00
+#SBATCH --ntasks=1
+#SBATCH --mem=2gb
+
+cp -r ~/OpenFOAM/openfoam-OpenFOAM-v2012/tutorial/incompressible/icoFoam/cavity/cavity ./
+blockMesh
+icoFoam
+```
+#### If you skipped the Step 5
+You need to load an ompi module and bashrc files in the submission script (you can do it on the terminal before the submission but it is better to do in the submission script for just in case).  This is an test case from cavity flow in tutorial (just added two lines to above script):
 ```bash
 #!/bin/bash
 #SBATCH -time 20:00:00
@@ -216,7 +237,9 @@ source ~/OpenFOAM/openfoam-OpenFOAM-v2012/etc/bashrc
 cp -r ~/OpenFOAM/openfoam-OpenFOAM-v2012/tutorial/incompressible/icoFoam/cavity/cavity ./
 blockMesh
 icoFoam
+
 ```
+
 ---
 <br>
 <br>
