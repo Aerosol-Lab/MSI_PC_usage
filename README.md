@@ -1,4 +1,7 @@
 # Hogan Lab. Minnesota Supercomputer Institute (MSI) usage
+## Outline
+* [link](#ssh-connection)
+* [link](#job-submission)
 ## <span style="color:blue">ssh connection</span>
 Open terminal (Linux) or command prompt and connet MSI pc by typing following command:
 ```bash
