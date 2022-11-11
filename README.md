@@ -1,7 +1,11 @@
 # Hogan Lab. Minnesota Supercomputer Institute (MSI) usage
 ## Outline
-* [link](#ssh-connection)
-* [link](#job-submission)
+* [SSH connection](#ssh-connection)
+* [Job script submission](#job-submission)
+* [File transfer](#file-transfer)
+* [LAMMPS](#lammps)
+* [OVITO](#ovito)
+* [OpenFOAM](#openfoam)
 ## <span style="color:blue">ssh connection</span>
 Open terminal (Linux) or command prompt and connet MSI pc by typing following command:
 ```bash
@@ -126,7 +130,7 @@ scp username@mesabi.msi.umn.edu:address1 address2
 <br>
 <br>
 
-## <span style="color:blue">LAMMPS (MD simulaiton)</span>
+## <span style="color:blue">LAMMPS</span>
 ### 1. Load module
 ```bash
 module load lammps
@@ -147,7 +151,7 @@ Transfer src, load lammps module, and build it.
 <br>
 <br>
 
-## <span style="color:blue">OVITO (python interface)</span>
+## <span style="color:blue">OVITO</span>
 ### 1. Make virtual Anaconda environment
 Maybe you need to create your own Anaconda environment (named env_ovito in this example) for ovito module installation:
 ```
@@ -179,7 +183,7 @@ If it is installed properly, it return ovito version (3.7.10 in this example).
 <br>
 <br>
 
-## <span style="color:blue">OpenFOAM (CFD simulation)</span>
+## <span style="color:blue">OpenFOAM</span>
 You can find instruction from [here](https://www.msi.umn.edu/sw/openfoam) but it is not useful and some calculation could not run with this way due to the old version of OpenFOAM. We reccomend to build your own source code on the MSI computer and use it as following instruction.
 ### Build source code
 #### Step 1: Download OpenFOAM
